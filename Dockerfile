@@ -74,7 +74,7 @@ USER pgtaptest
 #    docker build -t pgtaptest .
 #
 # Run with:
-#    docker run -i -t -v /path/to/my/postgres/tree:/pg/source -v /path/to/builddir:/pg/build -v /path/to/ccache:/pg/ccache pgtaptest
+#    docker run --rm=true -i -t -v /path/to/my/postgres/tree:/pg/source -v /path/to/builddir:/pg/build -v /path/to/ccache:/pg/ccache pgtaptest
 #
 # Use an alias or script to make it more convenient. If you want /pgbuild to be
 # transient just don't set a -v for it, so it's cleared every run.
