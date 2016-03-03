@@ -59,7 +59,7 @@ RUN eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib) && ${HOME}/perl5/bin/cpanm -
 
 # To keep the dockerfile self-contained generate the script from echo
 #
-RUN mkdir -p ${HOME}/bin && echo -e "#!/bin/bash\nif [ -e /pg/source/src/port/pg_config_paths.h ]\nthen\necho \"ERROR: datadir must be cleaned - src/port/pg_config_paths.h exists\"\nelse\n/pg/source/configure --enable-cassert --enable-debug --enable-tap-tests && make clean && make -j4 && make -C src/test/recovery check\nfi" >> ${HOME}/bin/recovery-check && chmod a+x ${HOME}/bin/recovery-check
+RUN mkdir -p ${HOME}/bin && echo -e "#!/bin/bash\nif [ -e /pg/source/src/port/pg_config_paths.h ]\nthen\necho \"ERROR: datadir must be cleaned - src/port/pg_config_paths.h exists\"\nelse\n/pg/source/configure --enable-cassert --enable-debug --enable-tap-tests && make -s clean && make -s -j4 && make -C src/test/recovery check\nfi" >> ${HOME}/bin/recovery-check && chmod a+x ${HOME}/bin/recovery-check
 
 # Sudo management. It's here not earlier so you don't have to rebuild the whole
 # image and flush the cache if you change it.
